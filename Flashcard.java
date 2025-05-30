@@ -4,7 +4,7 @@ public class Flashcard
 {
     private ArrayList<Questions> fullQuiz = new ArrayList<Questions>();
 
-    public String createFlashcard()
+    public void createFlashcard()
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Pick a topic:" + "\n" + "a) SAT" + "\n" + "b) Spanish" + "c: (temp topic)" + "\n");
@@ -46,17 +46,18 @@ public class Flashcard
         System.out.println("Generating a " + topic + " quiz of length " + length);
         createQuiz(topic, length);
         scanner.close();
-        
-
-
-        return "e";
     }
+
      public void createQuiz(String topic, int length) 
     {
-        
-
-        
+        fullQuiz = {};
+        if (topic.equals("SAT Vocabulary")) 
+        else if (topic.equals("SAT Grammar"))
+        else if (topic.equals("Spanish Nouns"))
+        else if (topic.equals("Spanish Verbs"))
     }
+
+
 
     
 
