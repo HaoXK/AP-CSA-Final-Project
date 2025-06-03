@@ -14,7 +14,9 @@ import javax.swing.Timer;
 
 public class UserInterface implements ActionListener
 {
-
+    int instance = 0;
+    int questionNum;
+    String topic;
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
     JButton button1 = new JButton("SAT Vocabulary");
@@ -47,30 +49,36 @@ public class UserInterface implements ActionListener
     frame.setVisible(true);
     }
 
-    
     @Override
     public void actionPerformed(ActionEvent e) {
-        String topic;
         Object source = e.getSource();
+        if (instance == 0) { //instance is used to keep track of how many times the user clicks a button
         if (source == button1) topic = "Vocabulary";
         else topic = "Grammar";
-            response1.setText("Generating an SAT " + topic + " quiz...");
-            new javax.swing.Timer(3000, new ActionListener() {
-                @Override
-            public void actionPerformed(ActionEvent event) 
-                {
-                    ((Timer) event.getSource()).stop();
-                    response1.setText("");
-                    label.setText(topic + " quiz ready! How many questions?");
-                    button1.setText("1");
-                    button2.setText("2");
-                }
-            }).start();   
+        label.setText("How many questions would you like in your quiz?");
+        button1.setText("5");
+        button2.setText("10");
+        instance++;
+        return; //stops the code from registering one button click as two button clicks
         }
+
+        if (instance == 1) {
+            if (source == button1) questionNum = 5;
+            else questionNum = 10;
+            response1.setText("Generating a " + topic + " quiz with " + questionNum + " questions..."); 
+            new javax.swing.Timer(2000, new ActionListener() {
+                public void actionPerformed(ActionEvent timer) {
+                ((Timer) timer.getSource()).stop();
+
+                
+                } 
+            }).start();
+
+        }
+        }
+}
 
 
 
        //if (e.getSource() == button1) response1.setText("Generating an SAT vocabulary quiz...");
        //else  if (e.getSource() == button2) response1.setText("<html>Generating an SAT Grammar quiz...<html>");
-        
-    }
